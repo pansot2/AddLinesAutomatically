@@ -6,7 +6,6 @@
 package gr.uop.intermittentfaults.appendfilelines;
 
 import gr.uop.intermittent.faults.intermittentfaultstest.Test;
-import gr.uop.intermittent.faults.utils.Cache;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,7 +28,8 @@ public class Main {
         additionalLines.add(34);
         paramsToMonitor.add("value");
         AddImport.addLines(file, "import org.jboss.metrics.javase.automatedmetricsjavaseapi.JbossAutomatedJavaSeMetrics;");
-        AddFileLines.addLines(file, additionalLines, paramsToMonitor, "CacheStore");
+        AddImport.addLines(file, "import org.jboss.metrics.javase.automatedmetricsjavaseapi.JbossAutomatedJavaSeMetricsDbStore;");
+        AddFileLines.addLines(file, additionalLines, paramsToMonitor, "Store");
 
         Runtime.getRuntime().exec("cmd /c start C:\\Users\\Panos\\Documents\\NetBeansProjects\\appendFileLines\\src\\main\\java\\gr\\uop\\intermittentfaults\\appendfilelines\\runCompile.bat");
         Thread.sleep(10000);

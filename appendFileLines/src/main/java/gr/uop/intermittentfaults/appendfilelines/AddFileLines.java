@@ -20,7 +20,7 @@ public class AddFileLines {
         List<String> lines = Files.readAllLines(file.toPath());
         int i=0;
         for (int line : additionalLines)
-            lines.set(line-1, lines.get(line-1) + " " + "try {JbossAutomatedJavaSeMetrics.metric(\"" + className + "\"," + paramsToMonitor.get(i) + ",\"" + paramsToMonitor.get(i++) + "\",\"intermittentFaultsGroup\");} catch (Exception ex) {ex.printStackTrace();}");
+            lines.set(line-1, lines.get(line-1) + " " + "try {JbossAutomatedJavaSeMetrics.metric(\"" + className + "\"," + paramsToMonitor.get(i) + ",\"" + paramsToMonitor.get(i) + "\",\"intermittentFaultsGroup\"); JbossAutomatedJavaSeMetricsDbStore.metricsDbStore(\"" + className + "\", new Object[]{" + paramsToMonitor.get(i) + "}, \"intermittentFaultsGroup\", \"statement_1\", new String[]{\"StoreDBMetric\",\"" + paramsToMonitor.get(i++) + "\"});} catch (Exception ex) {ex.printStackTrace();}");
         Files.write(file.toPath(), lines);
     }
 }
